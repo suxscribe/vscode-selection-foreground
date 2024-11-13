@@ -1,42 +1,35 @@
 import * as vscode from 'vscode';
+import { DecoratorManager } from './decoratorManager';
 
 export function activate(context: vscode.ExtensionContext) {
-    console.log('Selection Contrast extension is active');
+  console.log('Selection Contrast extension is active');
 
-    // Create a decoration type
-    const decorationType = vscode.window.createTextEditorDecorationType({
-        color: '#ffffff', // Text color
-        backgroundColor: '#ff0000', // Background color
-    });
+  const decoratorManager = new DecoratorManager();
 
-    // Register a command that toggles the decoration
-    let disposable = vscode.commands.registerCommand('selection-contrast.toggleHighlight', () => {
-        const editor = vscode.window.activeTextEditor;
-        if (!editor) {
-            return;
-        }
+  // Register the toggle command
+  const toggleCommand = vscode.commands.registerCommand(
+    'secon.toggleHighlight',
+    () => {
+      const editor = vscode.window.activeTextEditor;
+      if (editor) {
+        decoratorManager.applyDecorations(editor);
+      }
+    }
+  );
 
-        // Apply decoration to current selection
-        const decorationsArray = editor.selections.map(selection => ({
-            range: new vscode.Range(selection.start, selection.end)
-        }));
-        
-        editor.setDecorations(decorationType, decorationsArray);
-    });
+  // Register selection change listener
+  const selectionChangeListener = vscode.window.onDidChangeTextEditorSelection(
+    event => {
+      decoratorManager.applyDecorations(event.textEditor);
+    }
+  );
 
-    // Add selection change listener
-    vscode.window.onDidChangeTextEditorSelection(event => {
-        const editor = event.textEditor;
-        
-        // Apply decoration to new selection
-        const decorationsArray = editor.selections.map(selection => ({
-            range: new vscode.Range(selection.start, selection.end)
-        }));
-        
-        editor.setDecorations(decorationType, decorationsArray);
-    }, null, context.subscriptions);
-
-    context.subscriptions.push(disposable);
+  // Add to subscriptions
+  context.subscriptions.push(
+    toggleCommand,
+    selectionChangeListener,
+    decoratorManager
+  );
 }
 
 export function deactivate() {}
