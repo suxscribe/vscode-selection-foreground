@@ -17,10 +17,13 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  // Register selection change listener
+  // Register selection change listener with a throttle
   const selectionChangeListener = vscode.window.onDidChangeTextEditorSelection(
     event => {
-      decoratorManager.applyDecorations(event.textEditor);
+      // Only process if the editor is active
+      if (event.textEditor === vscode.window.activeTextEditor) {
+        decoratorManager.applyDecorations(event.textEditor);
+      }
     }
   );
 

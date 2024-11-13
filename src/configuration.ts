@@ -10,7 +10,7 @@ export interface DecorationConfig {
 }
 
 export const defaultDecorationConfig: DecorationConfig = {
-  color: '#ffffff',
+  color: '#000000',
   // backgroundColor: '#ff0000',
   // border: '2px solid yellow',
   // borderRadius: '3px',
