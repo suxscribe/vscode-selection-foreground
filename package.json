@@ -1,14 +1,28 @@
 {
   "name": "secon",
-  "displayName": "secon",
-  "description": "secon",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.93.1"
-  },
+  "displayName": "Selection Contrast",
+  "description": "Enhance text selection visibility by customizing selection colors",
+  "version": "1.0.0",
+  "publisher": "YOUR_PUBLISHER_NAME",
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "selection",
+    "highlight",
+    "contrast",
+    "color",
+    "accessibility"
+  ],
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/secon"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.93.1"
+  },
   "activationEvents": [
     "onStartupFinished"
   ],

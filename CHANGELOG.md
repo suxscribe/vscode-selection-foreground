@@ -1,9 +1,10 @@
 # Change Log
 
-All notable changes to the "secon" extension will be documented in this file.
+## [1.0.0] - YYYY-MM-DD
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
+### Added
 
 - Initial release
+- Customizable selection text color
+- Toggle functionality via command palette
+- Configuration settings for color and enabled state

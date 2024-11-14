@@ -6,10 +6,16 @@ import * as vscode from 'vscode';
 // import * as myExtension from '../../extension';
 
 suite('Extension Test Suite', () => {
-	vscode.window.showInformationMessage('Start all tests.');
+  vscode.window.showInformationMessage('Start all tests.');
 
-	test('Sample test', () => {
-		assert.strictEqual(-1, [1, 2, 3].indexOf(5));
-		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
-	});
+  test('Configuration is loaded correctly', () => {
+    const config = vscode.workspace.getConfiguration('secon');
+    assert.strictEqual(typeof config.get('enabled'), 'boolean');
+    assert.strictEqual(typeof config.get('textColor'), 'string');
+  });
+
+  test('Toggle command exists', () => {
+    const commands = vscode.commands.getCommands();
+    assert(commands.includes('secon.toggleHighlight'));
+  });
 });
