@@ -1,14 +1,15 @@
 {
-  "name": "secon",
-  "displayName": "Selection Contrast",
-  "description": "Enhance text selection visibility by customizing selection colors",
+  "name": "selection-foreground",
+  "displayName": "Selection Foreground Alternative",
+  "description": "Enhance visibility of selected text",
   "version": "1.0.0",
-  "publisher": "YOUR_PUBLISHER_NAME",
+  "publisher": "suxscribe",
   "categories": [
     "Other"
   ],
   "keywords": [
     "selection",
+    "foreground",
     "highlight",
     "contrast",
     "color",
@@ -17,7 +18,7 @@
   "icon": "images/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_USERNAME/secon"
+    "url": "https://github.com/YOUR_USERNAME/selection-foreground"
   },
   "license": "MIT",
   "engines": {
@@ -30,20 +31,20 @@
   "contributes": {
     "commands": [
       {
-        "command": "secon.toggleHighlight",
-        "title": "Toggle Selection Highlight"
+        "command": "selection-foreground.toggleHighlight",
+        "title": "Selection Foreground: Toggle"
       }
     ],
     "configuration": {
-      "title": "Selection Contrast",
+      "title": "Selection Foreground",
       "properties": {
-        "secon.enabled": {
+        "selection-foreground.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Enable selection foreground color",
+          "description": "Enable",
           "order": 0
         },
-        "secon.textColor": {
+        "selection-foreground.textColor": {
           "type": "string",
           "default": "#000000",
           "description": "Color of the selected text",

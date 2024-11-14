@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 
 export function getConfiguration() {
-  const config = vscode.workspace.getConfiguration('secon');
+  const config = vscode.workspace.getConfiguration('selection-foreground');
   return {
     enabled: config.get<boolean>('enabled') ?? true,
     textColor: config.get<string>('textColor') ?? '#000000',
@@ -9,7 +9,7 @@ export function getConfiguration() {
 }
 
 export async function toggleEnabled() {
-  const config = vscode.workspace.getConfiguration('secon');
+  const config = vscode.workspace.getConfiguration('selection-foreground');
   const currentEnabled = config.get<boolean>('enabled') ?? true;
   await config.update('enabled', !currentEnabled, true);
   return !currentEnabled;
@@ -17,7 +17,7 @@ export async function toggleEnabled() {
 
 export function subscribeToConfigChanges(callback: () => void) {
   return vscode.workspace.onDidChangeConfiguration(event => {
-    if (event.affectsConfiguration('secon')) {
+    if (event.affectsConfiguration('selection-foreground')) {
       callback();
     }
   });

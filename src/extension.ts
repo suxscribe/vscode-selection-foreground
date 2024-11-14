@@ -8,7 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
   const decoratorManager = new DecoratorManager(context);
 
   // Register the toggle command
-  const toggleCommand = vscode.commands.registerCommand('secon.toggleHighlight', async () => {
+  const toggleCommand = vscode.commands.registerCommand('selection-foreground.toggleHighlight', async () => {
     const newState = await toggleEnabled();
     // Show status message
     vscode.window.setStatusBarMessage(`Selection Contrast: ${newState ? 'Enabled' : 'Disabled'}`, 2000);

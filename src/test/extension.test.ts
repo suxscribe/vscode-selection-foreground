@@ -9,13 +9,13 @@ suite('Extension Test Suite', () => {
   vscode.window.showInformationMessage('Start all tests.');
 
   test('Configuration is loaded correctly', () => {
-    const config = vscode.workspace.getConfiguration('secon');
+    const config = vscode.workspace.getConfiguration('selection-foreground');
     assert.strictEqual(typeof config.get('enabled'), 'boolean');
     assert.strictEqual(typeof config.get('textColor'), 'string');
   });
 
   test('Toggle command exists', () => {
     const commands = vscode.commands.getCommands();
-    assert(commands.includes('secon.toggleHighlight'));
+    assert(commands.includes('selection-foreground.toggleHighlight'));
   });
 });
