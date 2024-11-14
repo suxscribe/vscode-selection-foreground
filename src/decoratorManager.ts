@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { createDecorationType } from './configuration';
+import { getConfiguration, subscribeToConfigChanges } from './settings';
 
 export class DecoratorManager {
   private decorationType: vscode.TextEditorDecorationType;
@@ -7,11 +7,32 @@ export class DecoratorManager {
   private debounceTimeout: NodeJS.Timeout | undefined;
   private static DEBOUNCE_DELAY = 50; // milliseconds
 
-  constructor() {
-    this.decorationType = createDecorationType();
+  constructor(context: vscode.ExtensionContext) {
+    this.decorationType = this.createDecorationType();
+
+    context.subscriptions.push(
+      subscribeToConfigChanges(() => {
+        this.updateDecorationType();
+      })
+    );
+  }
+
+  private createDecorationType() {
+    const config = getConfiguration();
+    return vscode.window.createTextEditorDecorationType({
+      color: config.textColor,
+      // backgroundColor: config.backgroundColor,
+    });
   }
 
   public applyDecorations(editor: vscode.TextEditor) {
+    const config = getConfiguration();
+    if (!config.enabled) {
+      // Clear decorations if disabled
+      editor.setDecorations(this.decorationType, []);
+      return;
+    }
+
     // Clear any pending updates
     if (this.debounceTimeout) {
       clearTimeout(this.debounceTimeout);
@@ -26,10 +47,7 @@ export class DecoratorManager {
   private applyDecorationsImmediate(editor: vscode.TextEditor) {
     // Create a string representation of current selections for comparison
     const selectionsKey = editor.selections
-      .map(
-        sel =>
-          `${sel.start.line},${sel.start.character},${sel.end.line},${sel.end.character}`
-      )
+      .map(sel => `${sel.start.line},${sel.start.character},${sel.end.line},${sel.end.character}`)
       .join('|');
 
     // Skip if selections haven't changed
@@ -44,6 +62,24 @@ export class DecoratorManager {
 
     editor.setDecorations(this.decorationType, decorationsArray);
     this.lastDecorations = selectionsKey;
+  }
+
+  private updateDecorationType() {
+    const config = getConfiguration();
+
+    // Dispose old decoration type
+    this.decorationType.dispose();
+    // Create new one with updated settings
+    this.decorationType = this.createDecorationType();
+
+    // Reapply decorations if there's an active editor and enabled
+    const editor = vscode.window.activeTextEditor;
+    if (editor && config.enabled) {
+      this.applyDecorations(editor);
+    } else if (editor) {
+      // Clear decorations if disabled
+      editor.setDecorations(this.decorationType, []);
+    }
   }
 
   public dispose() {

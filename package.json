@@ -19,7 +19,25 @@
         "command": "secon.toggleHighlight",
         "title": "Toggle Selection Highlight"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Selection Contrast",
+      "properties": {
+        "secon.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable selection foreground color",
+          "order": 0
+        },
+        "secon.textColor": {
+          "type": "string",
+          "default": "#000000",
+          "description": "Color of the selected text",
+          "format": "color",
+          "order": 1
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
