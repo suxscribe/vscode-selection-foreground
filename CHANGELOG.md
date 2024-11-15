@@ -5,6 +5,6 @@
 ### Added
 
 - Initial release
-- Customizable selection text color
+- Customizable text selection color
 - Toggle functionality via command palette
 - Configuration settings for color and enabled state

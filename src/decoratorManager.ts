@@ -21,7 +21,6 @@ export class DecoratorManager {
     const config = getConfiguration();
     return vscode.window.createTextEditorDecorationType({
       color: config.textColor,
-      // backgroundColor: config.backgroundColor,
     });
   }
 
@@ -38,7 +37,6 @@ export class DecoratorManager {
       clearTimeout(this.debounceTimeout);
     }
 
-    // Debounce the update
     this.debounceTimeout = setTimeout(() => {
       this.applyDecorationsImmediate(editor);
     }, DecoratorManager.DEBOUNCE_DELAY);
@@ -67,9 +65,7 @@ export class DecoratorManager {
   private updateDecorationType() {
     const config = getConfiguration();
 
-    // Dispose old decoration type
     this.decorationType.dispose();
-    // Create new one with updated settings
     this.decorationType = this.createDecorationType();
 
     // Reapply decorations if there's an active editor and enabled

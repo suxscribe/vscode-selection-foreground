@@ -3,15 +3,15 @@ import { DecoratorManager } from './decoratorManager';
 import { toggleEnabled } from './settings';
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Selection Contrast extension is active');
+  console.log('Selection Foreground extension is active');
 
   const decoratorManager = new DecoratorManager(context);
 
   // Register the toggle command
-  const toggleCommand = vscode.commands.registerCommand('selection-foreground.toggleHighlight', async () => {
+  const toggleCommand = vscode.commands.registerCommand('selection-foreground.enabled', async () => {
     const newState = await toggleEnabled();
     // Show status message
-    vscode.window.setStatusBarMessage(`Selection Contrast: ${newState ? 'Enabled' : 'Disabled'}`, 2000);
+    vscode.window.setStatusBarMessage(`Selection Foreground 🔥: ${newState ? 'Enabled' : 'Disabled'}`, 2000);
 
     const editor = vscode.window.activeTextEditor;
     if (editor) {

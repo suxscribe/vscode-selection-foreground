@@ -14,8 +14,8 @@ suite('Extension Test Suite', () => {
     assert.strictEqual(typeof config.get('textColor'), 'string');
   });
 
-  test('Toggle command exists', () => {
-    const commands = vscode.commands.getCommands();
-    assert(commands.includes('selection-foreground.toggleHighlight'));
+  test('Toggle command exists', async () => {
+    const commands = await vscode.commands.getCommands();
+    assert.ok(commands.includes('selection-foreground.enabled'));
   });
 });

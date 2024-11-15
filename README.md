@@ -4,7 +4,7 @@ This extension allows to change color of selected text and kinda implements func
 
 So now you can use contrast selection background color and see things clearly.
 
-It works a bit slow, due to how VSCode decorators work. But it works.
+It works a bit slow, due to how VSCode decorators work.
 
 ## Features
 
@@ -12,16 +12,14 @@ It works a bit slow, due to how VSCode decorators work. But it works.
 
 ![Section Decoration Example](images/example.png)
 
-## Installation
+## Configuration
 
-1. Open VS Code
-2. Press `Ctrl+P` / `Cmd+P` to open the Quick Open dialog
-3. Type `ext install selection-foreground`
-4. Click install
+- `selection-foreground.textColor` - color of selected text (default: `#000000`)
+- `selection-foreground.enabled` - enable/disable extension (default: `true`)
 
 ## Usage
 
-1. Set selection text color via settings or with `selection-foreground.textColor` property
-2. Press `Ctrl+Shift+P` / `Cmd+Shift+P` to open the Command Palette
-3. Type `Selection Foreground: Toggle`
-4. Set some `editor.selectionBackground` if not set already
+1. Set color via settings or with `selection-foreground.textColor` property
+2. Command Palette: `Selection Foreground: Toggle`
+3. Set some `editor.selectionBackground` if not set already
+4. Select something
