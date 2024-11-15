@@ -4,13 +4,16 @@ This extension allows to change color of selected text and kinda implements func
 
 So now you can use contrast selection background color and see things clearly.
 
-It works a bit slow, due to how VSCode decorators work.
+![Section Decoration Example](images/example.gif)
+
+## Notes
+
+It renders with a bit of delay, it's because of the way VSCode decorators work.
 
 ## Features
 
 - Automatically highlights selected text with a specified color
-
-![Section Decoration Example](images/example.png)
+- Supports multiple selections
 
 ## Configuration
 

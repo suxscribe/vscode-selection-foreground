@@ -43,17 +43,17 @@ export class DecoratorManager {
   }
 
   private applyDecorationsImmediate(editor: vscode.TextEditor) {
-    // Create a string representation of current selections for comparison
+    // Current selections to string for comparison
     const selectionsKey = editor.selections
       .map(sel => `${sel.start.line},${sel.start.character},${sel.end.line},${sel.end.character}`)
       .join('|');
 
-    // Skip if selections haven't changed
+    // Check if selection has changed
     if (selectionsKey === this.lastDecorations) {
       return;
     }
 
-    // Update decorations and store the new state
+    // Update decorations
     const decorationsArray = editor.selections.map(selection => ({
       range: new vscode.Range(selection.start, selection.end),
     }));
@@ -63,17 +63,18 @@ export class DecoratorManager {
   }
 
   private updateDecorationType() {
-    const config = getConfiguration();
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return;
+    }
 
+    const config = getConfiguration();
     this.decorationType.dispose();
     this.decorationType = this.createDecorationType();
 
-    // Reapply decorations if there's an active editor and enabled
-    const editor = vscode.window.activeTextEditor;
-    if (editor && config.enabled) {
+    if (config.enabled) {
       this.applyDecorations(editor);
-    } else if (editor) {
-      // Clear decorations if disabled
+    } else {
       editor.setDecorations(this.decorationType, []);
     }
   }

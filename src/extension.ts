@@ -3,11 +3,10 @@ import { DecoratorManager } from './decoratorManager';
 import { toggleEnabled } from './settings';
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Selection Foreground extension is active');
+  // console.log('Selection Foreground extension is active');
 
   const decoratorManager = new DecoratorManager(context);
 
-  // Register the toggle command
   const toggleCommand = vscode.commands.registerCommand('selection-foreground.enabled', async () => {
     const newState = await toggleEnabled();
     // Show status message
@@ -19,7 +18,6 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
-  // Register selection change listener with a throttle
   const selectionChangeListener = vscode.window.onDidChangeTextEditorSelection(event => {
     // Only process if the editor is active
     if (event.textEditor === vscode.window.activeTextEditor) {
@@ -27,7 +25,6 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
-  // Add to subscriptions
   context.subscriptions.push(toggleCommand, selectionChangeListener, decoratorManager);
 }
 
