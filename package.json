@@ -18,7 +18,7 @@
   "icon": "images/icon.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_USERNAME/selection-foreground"
+    "url": "https://github.com/suxscribe/vscode-selection-foreground"
   },
   "license": "MIT",
   "engines": {
