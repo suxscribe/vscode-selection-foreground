@@ -24,5 +24,10 @@ It renders with a bit of delay, it's because of the way VSCode decorators work.
 
 1. Set color via settings or with `selection-foreground.textColor` property
 2. Command Palette: `Selection Foreground: Toggle`
-3. Set some `editor.selectionBackground` if not set already
+3. You will probably want to set contrast colors:
+
+   - `editor.selectionBackground`
+   - `editor.inactiveSelectionBackground`
+   - `editor.findMatchBackground`
+
 4. Select something

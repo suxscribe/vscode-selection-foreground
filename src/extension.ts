@@ -10,7 +10,7 @@ export function activate(context: vscode.ExtensionContext) {
   const toggleCommand = vscode.commands.registerCommand('selection-foreground.enabled', async () => {
     const newState = await toggleEnabled();
     // Show status message
-    vscode.window.setStatusBarMessage(`Selection Foreground 🔥: ${newState ? 'Enabled' : 'Disabled'}`, 2000);
+    vscode.window.setStatusBarMessage(`Selection Foreground: ${newState ? 'Enabled' : 'Disabled'}`, 2000);
 
     const editor = vscode.window.activeTextEditor;
     if (editor) {

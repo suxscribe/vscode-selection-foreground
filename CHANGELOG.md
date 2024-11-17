@@ -1,6 +1,12 @@
 # Change Log
 
-## [1.0.0] - YYYY-MM-DD
+## [1.0.1] - 2024-03-13
+
+### Documentation
+
+- Updated README with related settings props
+
+## [1.0.0] - 2024-03-13
 
 ### Added
 
