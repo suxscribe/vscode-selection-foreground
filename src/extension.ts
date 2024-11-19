@@ -3,8 +3,6 @@ import { DecoratorManager } from './decoratorManager';
 import { toggleEnabled } from './settings';
 
 export function activate(context: vscode.ExtensionContext) {
-  // console.log('Selection Foreground extension is active');
-
   const decoratorManager = new DecoratorManager(context);
 
   const toggleCommand = vscode.commands.registerCommand('selection-foreground.enabled', async () => {

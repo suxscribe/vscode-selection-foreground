@@ -42,7 +42,25 @@ export class DecoratorManager {
     }, DecoratorManager.DEBOUNCE_DELAY);
   }
 
+  private getSelectionLength(selection: vscode.Selection, document: vscode.TextDocument): number {
+    // Single line selection
+    if (selection.start.line === selection.end.line) {
+      return selection.end.character - selection.start.character;
+    }
+    // Multi-line selection
+    return document.offsetAt(selection.end) - document.offsetAt(selection.start);
+  }
+
   private applyDecorationsImmediate(editor: vscode.TextEditor) {
+    // Only proceed if there are actual selections (not just cursor positions)
+    const hasActualSelections = editor.selections.some(sel => this.getSelectionLength(sel, editor.document) > 0);
+
+    if (!hasActualSelections) {
+      editor.setDecorations(this.decorationType, []);
+      this.lastDecorations = '';
+      return;
+    }
+
     // Current selections to string for comparison
     const selectionsKey = editor.selections
       .map(sel => `${sel.start.line},${sel.start.character},${sel.end.line},${sel.end.character}`)
@@ -54,9 +72,11 @@ export class DecoratorManager {
     }
 
     // Update decorations
-    const decorationsArray = editor.selections.map(selection => ({
-      range: new vscode.Range(selection.start, selection.end),
-    }));
+    const decorationsArray = editor.selections
+      .filter(sel => this.getSelectionLength(sel, editor.document) > 0)
+      .map(selection => ({
+        range: new vscode.Range(selection.start, selection.end),
+      }));
 
     editor.setDecorations(this.decorationType, decorationsArray);
     this.lastDecorations = selectionsKey;
