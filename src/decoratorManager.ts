@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import { getConfiguration, subscribeToConfigChanges } from './settings';
 
 export class DecoratorManager {
-  private decorationType: vscode.TextEditorDecorationType;
+  public decorationType: vscode.TextEditorDecorationType;
   private lastDecorations: string = '';
   private debounceTimeout: NodeJS.Timeout | undefined;
   private static DEBOUNCE_DELAY = 50; // milliseconds
@@ -68,7 +68,6 @@ export class DecoratorManager {
 
     // Check if selection has changed
     if (selectionsKey === this.lastDecorations) {
-      return;
     }
 
     // Update decorations

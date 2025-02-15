@@ -2,7 +2,7 @@
   "name": "selection-foreground",
   "displayName": "Selection Foreground Alternative",
   "description": "Enhance visibility of selected text",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "publisher": "suxscribe",
   "categories": [
     "Other"
@@ -33,6 +33,26 @@
       {
         "command": "selection-foreground.enabled",
         "title": "Selection Foreground: Toggle"
+      },
+      {
+        "command": "selection-foreground.copyLineUp",
+        "title": "Selection Foreground: Copy Line Up"
+      },
+      {
+        "command": "selection-foreground.copyLineDown",
+        "title": "Selection Foreground: Copy Line Down"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "selection-foreground.copyLineUp",
+        "key": "shift+alt+up",
+        "when": "editorTextFocus && !editorReadonly"
+      },
+      {
+        "command": "selection-foreground.copyLineDown",
+        "key": "shift+alt+down",
+        "when": "editorTextFocus && !editorReadonly"
       }
     ],
     "configuration": {
