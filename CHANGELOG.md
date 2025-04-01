@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.0.5] - 2025-04-01
+
+### Changed
+
+- Decreased debounce timeout for smoother selection updates
+
 ## [1.0.4] - 2025-02-15
 
 ### Fixed

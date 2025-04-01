@@ -5,7 +5,7 @@ export class DecoratorManager {
   public decorationType: vscode.TextEditorDecorationType;
   private lastDecorations: string = '';
   private debounceTimeout: NodeJS.Timeout | undefined;
-  private static DEBOUNCE_DELAY = 50; // milliseconds
+  private static DEBOUNCE_DELAY = 8; // milliseconds
 
   constructor(context: vscode.ExtensionContext) {
     this.decorationType = this.createDecorationType();
